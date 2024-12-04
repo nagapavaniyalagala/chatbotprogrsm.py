@@ -1,0 +1,30 @@
+import nltk
+import random
+from nltk.chat.util import Chat, reflections
+
+# Define a list of patterns and responses
+patterns = [
+    (r'hi|hello|hey', ['Hello!', 'Hey there!', 'Hi!']),
+    (r'how are you?', ['I am good, thank you.', 'I\'m doing well, thanks.', 'All good!']),
+    (r'what is your name?', ['I am a chatbot.', 'You can call me Chatbot.', 'I\'m Chatbot!']),
+    (r'bye|goodbye', ['Goodbye!', 'Bye!', 'Have a nice day!']),
+    (r'i love you', ['Aw, thanks!', 'I love you too!']),
+    (r'(.*) (hungry|sleepy)', ['Maybe you should eat something.', 'You should take a nap.']),
+    (r'(.*)', ['Interesting!', 'Tell me more...', 'I see...', 'Can you elaborate?']),
+]
+
+# Create a chatbot
+def chatbot():
+    print("Hello! I'm Chatbot. How can I help you today?")
+    chatbot = Chat(patterns, reflections)
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() == 'quit':
+            print("Goodbye!")
+            break
+        response = chatbot.respond(user_input)
+        print("Chatbot:", response)
+
+# Run the chatbot
+if __name__ == "__main__":
+    chatbot()
